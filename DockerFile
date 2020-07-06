@@ -1,9 +1,9 @@
 FROM apache/airflow
 RUN pip install -r requirements.txt
 ENV AIRFLOW_HOME=/usr/local/airflow
-COPY bootstrap.sh /bootstrap.sh
-RUN chmod +x /bootstrap.sh
-ENTRYPOINT ["/bootstrap.sh"]
+#COPY bootstrap.sh /bootstrap.sh
+#RUN chmod +x /bootstrap.sh
+#ENTRYPOINT ["/bootstrap.sh"]
 
 
 # uncomment next 2 lines if you want to use 'docker-compose-volume-packages.yml'
