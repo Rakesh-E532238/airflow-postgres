@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
     # ubuntu:
@@ -30,7 +30,7 @@ services:
             - ./test:/usr/local/airflow/test
             - ./plugins:/usr/local/airflow/plugins
             # Uncomment to include custom plugins
-            - ./requirements.txt:/requirements.txt
+            - ./requirements.txt:/usr/local/airflow/requirements.txt
             # - ~/.aws:/usr/local/airflow/.aws
         ports:
             - "8080:8080"
