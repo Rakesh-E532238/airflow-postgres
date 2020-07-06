@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+    # ubuntu:
+    #     image: ubuntu:16.04
+
+    postgres:
+        image: postgres:9.6
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+    # initdb:
+    #     build: .
+    #     entrypoint: airflow initdb
+    webserver:
+        image: puckel/docker-airflow
+        restart: always
+        # mem_limit: 2048m
+        depends_on:
+            # - ubuntu
+            - postgres
+        # env_file:
+        #     - .env
+        environment:
+            - LOAD_EX=n
+            - EXECUTOR=Local
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./test:/usr/local/airflow/test
+            - ./plugins:/usr/local/airflow/plugins
+            # Uncomment to include custom plugins
+            - ./requirements.txt:/requirements.txt
+            # - ~/.aws:/usr/local/airflow/.aws
+        ports:
+            - "8080:8080"
+        command: webserver
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
