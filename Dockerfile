@@ -5,7 +5,7 @@ ENV AIRFLOW_HOME=/usr/local/airflow
 
 COPY ./dags /usr/local/airflow/dags
 COPY ./test /usr/local/airflow/test
-COPY ./airflow.cfg /usr/local/airflow/
+COPY ./config/airflow.cfg /usr/local/airflow/
 EXPOSE 8080
 
 CMD ["webserver"]
