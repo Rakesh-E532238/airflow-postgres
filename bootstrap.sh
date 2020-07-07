@@ -1,5 +1,7 @@
-sudo chown -R ubuntu /usr/local/airflow
-sudo chgrp -R ubuntu /usr/local/airflow
+RUN chmod +x /usr/local/airflow/unittests.cfg
+sudo chown -R airflow /usr/local/airflow
+sudo chgrp -R airflow /usr/local/airflow
+
 # if [ "$1" = "webserver" ]
 # then
 #     exec airflow webserver
