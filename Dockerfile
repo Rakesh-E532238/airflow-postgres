@@ -27,5 +27,4 @@ COPY ./test /usr/local/airflow/test
 COPY ./config/airflow.cfg /usr/local/airflow/
 
 EXPOSE 8080
-
-#CMD [webserver]
+CMD webserver
