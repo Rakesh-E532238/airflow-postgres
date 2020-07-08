@@ -1,8 +1,21 @@
 FROM centos:7
-COPY ./requirements.txt /usr/local/airflow/requirements.txt
-RUN pip install -r /usr/local/airflow/requirements.txt
+CMD pwd
+
 RUN yum -y install httpd
+RUN yum makecache
+RUN yum install epel-release -y
+RUN yum install python36-setuptools -y
+RUN easy_install-3.6 pip
+#RUN python36 -m pip --version
+#RUN yum install python34-pip -y
+#RUN yum install gcc python34-devel.x86_64 gcc-c++
+
 CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
+
+COPY ./requirements.txt /usr/local/airflow/requirements.txt
+
+RUN pip install -r /usr/local/airflow/requirements.txt
+
 
 # Airflow
 ARG AIRFLOW_VERSION=1.10.9
